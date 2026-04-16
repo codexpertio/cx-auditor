@@ -1,0 +1,15 @@
+{
+  "name": "codexpert/cx-auditor",
+  "description": "Quick preliminary audit for any WordPress site by URL only.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "autoload": {
+    "psr-4": {
+      "Codexpert\\CX_Auditor\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.0",
+    "dompdf/dompdf": "^2.0"
+  }
+}

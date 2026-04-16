@@ -49,14 +49,14 @@ class Basic_Security extends Abstract_Checker {
 				}
 			}
 			if ( ! empty( $missing ) ) {
-				$checks[] = $this->check(
-					'security_headers',
-					__( 'Security Headers', 'cx-auditor' ),
-					'warning',
-					'部分缺失',
-					'完整',
-					[ 'missing' => $missing ]
-				);
+$checks[] = $this->check(
+			'security_headers',
+			__( 'Security Headers', 'cx-auditor' ),
+			'warning',
+			'partial',
+			'full',
+			[ 'missing' => $missing ]
+		);
 				$this->recommend( __( 'Add security headers (X-Frame-Options, X-Content-Type-Options, HSTS).', 'cx-auditor' ) );
 			} else {
 				$checks[] = $this->check( 'security_headers', __( 'Security Headers', 'cx-auditor' ), 'pass', 'all present', 'all present' );

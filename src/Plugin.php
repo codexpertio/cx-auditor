@@ -27,5 +27,12 @@ final class Plugin {
 		( new Assets() )->register();
 
 		add_action( 'wp_ajax_cx_auditor_run', [ Auditor::class, 'run_ajax' ] );
+		add_action( 'admin_init', [ $this, 'handle_pdf_download' ] );
+	}
+
+	public function handle_pdf_download(): void {
+		if ( isset( $_GET['action'] ) && 'cx_auditor_download_pdf' === $_GET['action'] ) {
+			( new Menu() )->handle_pdf_download();
+		}
 	}
 }

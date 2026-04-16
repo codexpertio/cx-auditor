@@ -2,6 +2,8 @@
 (function ($) {
 	'use strict';
 
+	var currentData = null;
+
 	function renderGauge($el, score) {
 		var color = '#dc2626';
 		if (score >= 90) color = '#16a34a';
@@ -49,11 +51,9 @@
 		$('#cx-auditor-modules').html(html);
 	}
 
-	$(document).on('submit', '#cx-auditor-form', function (e) {
-		e.preventDefault();
+	function runAudit() {
 		var $btn = $('#cx-auditor-run');
 		var $status = $('#cx-auditor-status');
-		var $form = $(this);
 		var site_url = $('#site_url').val();
 
 		if (!site_url) {
@@ -75,11 +75,17 @@
 			},
 			success: function (resp) {
 				if (resp.success) {
-					var data = resp.data;
+					currentData = resp.data;
 					var $score = $('#cx-auditor-score');
-					$score.data('score', data.overall);
-					renderGauge($score, data.overall);
-					renderModules(data.modules);
+					$score.data('score', currentData.overall);
+					renderGauge($score, currentData.overall);
+					renderModules(currentData.modules);
+
+					var modulesJson = JSON.stringify(currentData.modules);
+					var modulesBase64 = btoa(unescape(encodeURIComponent(modulesJson)));
+					var pdfUrl = CXAuditor.adminUrl + '?action=cx_auditor_download_pdf&site_url=' + encodeURIComponent(currentData.site_url) + '&score=' + currentData.overall + '&generated=' + encodeURIComponent(currentData.generated) + '&modules=' + encodeURIComponent(modulesBase64) + '&_wpnonce=' + CXAuditor.pdfNonce;
+					$('#cx-auditor-download').attr('href', pdfUrl);
+
 					$('#cx-auditor-results').slideDown();
 					$status.text('');
 				} else {
@@ -92,5 +98,10 @@
 				$btn.prop('disabled', false);
 			}
 		});
+	}
+
+	$(document).on('click', '#cx-auditor-run', function(e) {
+		e.preventDefault();
+		runAudit();
 	});
 })(jQuery);

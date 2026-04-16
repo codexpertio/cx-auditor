@@ -10,7 +10,10 @@ class Assets {
 	}
 
 	public function enqueue( string $hook ): void {
-		if ( ! str_contains( (string) $hook, 'cx-auditor' ) ) {
+		global $plugin_page;
+		$page = $plugin_page ?? $_GET['page'] ?? '';
+
+		if ( 'cx-auditor' !== $page ) {
 			return;
 		}
 
@@ -33,9 +36,11 @@ class Assets {
 			'cx-auditor-admin',
 			'CXAuditor',
 			[
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'nonce'   => wp_create_nonce( 'cx_auditor_audit' ),
-				'i18n'    => [
+				'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+				'adminUrl'  => admin_url( 'admin.php' ),
+				'nonce'     => wp_create_nonce( 'cx_auditor_audit' ),
+				'pdfNonce'  => wp_create_nonce( 'cx_auditor_pdf' ),
+				'i18n'      => [
 					'enterUrl'   => __( 'Please enter a valid site URL.', 'cx-auditor' ),
 					'scanning'  => __( 'Scanning site…', 'cx-auditor' ),
 					'error'     => __( 'Could not reach the site. It may be down or blocking requests.', 'cx-auditor' ),

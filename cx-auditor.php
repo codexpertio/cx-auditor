@@ -20,6 +20,11 @@ define( 'CX_AUDITOR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CX_AUDITOR_URL', plugin_dir_url( __FILE__ ) );
 define( 'CX_AUDITOR_BASENAME', plugin_basename( __FILE__ ) );
 
+$cx_auditor_autoload = CX_AUDITOR_PATH . 'vendor/autoload.php';
+if ( file_exists( $cx_auditor_autoload ) ) {
+	require_once $cx_auditor_autoload;
+}
+
 spl_autoload_register( static function ( $class ) {
 	$prefix = 'Codexpert\\CX_Auditor\\';
 	$len    = strlen( $prefix );
