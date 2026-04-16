@@ -1,0 +1,80 @@
+/* CX Auditor admin styles */
+.cx-auditor .cx-auditor-card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-left-width: 4px;
+	border-left-color: #7c3aed;
+	padding: 16px 20px;
+	margin: 16px 0;
+}
+.cx-auditor .cx-auditor-card h2 {
+	margin-top: 0;
+}
+.cx-auditor .cx-auditor-status {
+	margin-top: 10px;
+	min-height: 1.5em;
+	font-style: italic;
+}
+.cx-auditor .cx-auditor-status.error {
+	color: #dc2626;
+}
+
+.cx-auditor-gauge {
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+	background: conic-gradient(#16a34a 0deg, #16a34a 0deg, #e5e7eb 0deg);
+	margin: 20px 0;
+}
+
+.cx-auditor-module {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-left-width: 4px;
+	border-left-color: #6b7280;
+	padding: 16px;
+	margin: 16px 0;
+}
+.cx-auditor-module h3 {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 0;
+}
+
+.cx-auditor .badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	font-size: 12px;
+	font-weight: 700;
+	color: #fff;
+	letter-spacing: 0.5px;
+}
+.badge-pass    { background: #16a34a; }
+.badge-warning { background: #ca8a04; }
+.badge-fail    { background: #dc2626; }
+
+.cx-auditor table.widefat {
+	margin-top: 10px;
+}
+
+.cx-auditor .row-pass    { background: #f0fdf4; }
+.cx-auditor .row-warning { background: #fefce8; }
+.cx-auditor .row-fail    { background: #fef2f2; }
+
+.cx-auditor-recs {
+	background: #fef3c7;
+	border-radius: 3px;
+	padding: 10px 14px;
+	margin: 10px 0;
+}
+.cx-auditor-recs ul {
+	margin: 6px 0 0 18px;
+}
